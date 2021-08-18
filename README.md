@@ -36,9 +36,10 @@ Debes crear un servicio con los siguientes endpoint:
     * Fecha de pago
 
 3. Debe permitir listar aquellas boletas impagas en forma total o filtradas por tipo de servicio
-    * Fecha de pago
-    * Importe acumulado
-    * Cantidad de transacciones en esa fecha
+    * Tipo de servicio (solo si se lista sin filtro)
+    * Fecha de vencimiento
+    * Importe del servicio
+    * Código de barra
 
 4. Debe permitir listar los pagos (transacciones) entre un período de fechas, acumulando por día
     * Fecha de pago
