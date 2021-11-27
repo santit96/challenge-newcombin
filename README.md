@@ -1,6 +1,6 @@
 # Desafio Back-end
 
-En este desafío, creará una versión súper simplificada de un proveedor de servicios de pago de impuestos.
+En este desafío, creará una API RESTful de una versión súper simplificada de un proveedor de servicios de pago de impuestos.
 
 ## Contexto
 
