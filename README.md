@@ -18,7 +18,7 @@ Contamos entonces con dos entidades que representan esta información:
 
 ## Requisitos
 
-Debes crear un servicio con los siguientes endpoint:
+Debes crear un servicio con los siguientes endpoint API:
 
 1. Debe permitir crear una boleta de pago son la siguiente información, recibiendo la siguiente información:
     * Tipo de servicio (Luz/Gas/etc...)
