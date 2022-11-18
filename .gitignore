@@ -1,0 +1,24 @@
+# Text editors
+.vscode
+# VIM temp files
+*.swp
+
+# Ignore the default SQLite database.
+*.sqlite3
+*.sqlite3-journal
+
+# Config files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Byte-compiled / optimized / DLL files
+__pycache__/**
+*/__pycache__/**
+**/__pycache__/**
+
+staticfiles
+
+media

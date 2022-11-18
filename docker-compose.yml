@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    container_name: ${PROJECT_NAME}_db
+    image: postgres
+    volumes:
+      - /var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER:       ${DATABASE_USER}
+      POSTGRES_PASSWORD:   ${DATABASE_PASSWORD}
+      POSTGRES_DB:         ${DATABASE_NAME}
+  web:
+    container_name: ${PROJECT_NAME}_web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DATABASE_USER:       ${DATABASE_USER}
+      DATABASE_PASSWORD:   ${DATABASE_PASSWORD}
+      DATABASE_NAME:       ${DATABASE_NAME}
+      DATABASE_HOST:       ${DATABASE_HOST}
+      ENV:                 ${ENV}
+      PROJECT_NAME:        ${PROJECT_NAME}
+      SECRET_KEY:          ${SECRET_KEY}
+    volumes:
+      - .:/challenge_newcombin
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db

@@ -1,53 +1,38 @@
-# Desafio Back-end
+### Instalacion
 
-En este desafío, creará una API REST de una versión súper simplificada de un proveedor de servicios de pago de impuestos.
+Para poder levantar la applicación con Docker, podemos utilizar el comando:
+```make up```
 
-## Contexto
+Esto creará o ejecutará (si ya están creados), los containers de django y la base de datos.
 
-En esencia, una empresa de pago de impuestos tiene dos funciones muy importantes:
+Tener en cuenta que primero debemos **customizar las variables de entorno** para que la aplicación inicialice correctamente y poder crear la base de datos.
 
-1. Permitir a las empresas proveedoras de servicios cargar las boletas ("create-tax")
-2. Efectuar el pago de un impuesto ("pay-tax")
+* #### Customización de las variables de entorno
 
-Contamos entonces con dos entidades que representan esta información:
+Debemos crear un archivo llamado *.env* en la carpeta base de nuestra aplicación donde estarán definidas nuestras variables de entorno que contienen, entre otras cosas, el nombre de usuario y contraseña de la base de datos, la contraseña del usuario toor de la base de datos y el nombre de nuestro proyecto.
 
-* `transactions`: representa la información de pagos, los datos de la tarjeta, el valor, etc.
-* `payables`: representa las boletas creadas, con su status correspondiente (pending, paid, etc.)
+Podemos encontrar ejemplos de valores para nuestras variables en el archivo *.env.example*
 
-> Nota: solo es posible pagar una sola vez cada boleta
+* #### Creación de la base de datos
 
-## Requisitos
+Debido a que con Django no se nos permite crear la db, hay que hacerlo de manera manual. Para realizar esto, una vez que se hayan creado nuestros containers, podemos ejecutar el comando:
+`make create-db` (debemos asegurarnos que el container de MySQL haya terminado de iniciar, de lo contrario este comando fallará).
 
-Debes crear un servicio con los siguientes endpoint API:
+O ingresando al container de MySql siguiendo los siguientes pasos:
 
-1. Debe permitir crear una boleta de pago son la siguiente información, recibiendo la siguiente información:
-    * Tipo de servicio (Luz/Gas/etc...)
-    * Descripción del servicio. Ej: `'Edenor S.A.'`
-    * Fecha de vencimiento. Ej (2021-01-15)
-    * Importe del servicio.
-    * Status del pago (pending, paid, etc.).
-    * Código de barra (debe ser único - PK)
+- Con el comando  `make bash_db` accedemos a una terminal dentro del container.
+- Una vez dentro, ejecutamos `mysql -u root -p` y cuando nos pida la contraseña ingresamos lo definido en la variable de entorno *$MYSQL\_ROOT\_PASSWORD*.
+- Dentro de la terminal de MySQL ejecutamos `CREATE DATABASE <database_name>`, donde `<database_name>` es el nombre de nuestra base de datos, definido en la variable de entorno *$DATABASE_NAME* en el archivo *.env*.
 
-2. Debe permitir realizar un pago (transacción), recibiendo la siguiente información:
-    * Método de pago (`debit_card`, `credit_card` o `cash`)
-    * Número de la tarjeta (solo en caso de no ser efectivo)
-    * Importe del pago
-    * Código de barra
-    * Fecha de pago
+* #### Resumen de comandos *make* disponibles:
 
-3. Debe permitir listar aquellas boletas impagas en forma total o filtradas por tipo de servicio, devolviendo la siguiente información:
-    * Tipo de servicio (solo si se lista sin filtro)
-    * Fecha de vencimiento
-    * Importe del servicio
-    * Código de barra
 
-4. Debe permitir listar los pagos (transacciones) entre un período de fechas, acumulando por día, devolviendo la siguiente información:
-    * Fecha de pago
-    * Importe acumulado
-    * Cantidad de transacciones en esa fecha
-
-## Restricciones
-
-1. El servicio debe estar escrito en Node.js / Python
-2. El proyecto debe tener un README.md con todas las instrucciones sobre cómo ejecutar y probar el proyecto y los servicios proporcionados.
-3. Subir a un repositior git con privilegios publicos de lectura y compartir el link como resultado
+- `make up`: crea/arranca los containers
+- `make build`: build (o rebuild) de la imagen docker
+- `make create_db`: crea la base de datos en el container mysql
+- `make down/stop`: para la ejecución de los containers
+- `make prune`: elimina los containers
+- `make ps`: muestra los containers del proyecto en ejecución
+- `make bash`: permite ingresar a la consola del container de python
+- `make bash_db`: permite ingresar a la consola del container de mysql
+- `make logs`: muestra los logs de todos los containers del proyecto
