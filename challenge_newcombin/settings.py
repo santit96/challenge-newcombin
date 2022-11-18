@@ -71,7 +71,8 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'EXCEPTION_HANDLER': 'challenge_newcombin.exceptions_handler.custom_exception_handler'
 }
 
 WSGI_APPLICATION = 'challenge_newcombin.wsgi.application'

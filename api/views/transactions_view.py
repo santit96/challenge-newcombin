@@ -6,6 +6,8 @@ from django.db.models import Count, Sum
 from django.db.models.functions import TruncDay
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
+from django.core.exceptions import ValidationError
+
 
 class TransactionsFilter(SearchFilter):
 
