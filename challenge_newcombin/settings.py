@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,10 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 WSGI_APPLICATION = 'challenge_newcombin.wsgi.application'
 
