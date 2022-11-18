@@ -12,7 +12,7 @@ def custom_exception_handler(exc, context):
     if isinstance(exc, ValidationError):
         return Response (
                     exc,
-                    status=status.HTTP_422_UNPROCESSABLE_ENTITY
+                    status=status.HTTP_400_BAD_REQUEST
                 )
 
     if response is None and not(settings.DEBUG):
