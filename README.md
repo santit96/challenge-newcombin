@@ -13,16 +13,20 @@ Debemos crear un archivo llamado *.env* en la carpeta base de nuestra aplicació
 
 Podemos encontrar ejemplos de valores para nuestras variables en el archivo *.env.example*
 
-* #### Creación de la base de datos
+* #### Migraciones
 
-Debido a que con Django no se nos permite crear la db, hay que hacerlo de manera manual. Para realizar esto, una vez que se hayan creado nuestros containers, podemos ejecutar el comando:
-`make create-db` (debemos asegurarnos que el container de MySQL haya terminado de iniciar, de lo contrario este comando fallará).
+El siguiente paso es ejecutar las migraciones, para eso se ejecuta `make bash` para acceder a una terminal dentro del container.
+Una vez dentro, ejecutamos `python manage.py migrate`.
+Se deberían ejecutar las migraciones sin problema.
 
-O ingresando al container de postgres siguiendo los siguientes pasos:
+* ### Uso
 
-- Con el comando  `make bash_db` accedemos a una terminal dentro del container.
-- Una vez dentro, ejecutamos `psql -u root -p` y cuando nos pida la contraseña ingresamos lo definido en la variable de entorno *$MYSQL\_ROOT\_PASSWORD*.
-- Dentro de la terminal de MySQL ejecutamos `CREATE DATABASE <database_name>`, donde `<database_name>` es el nombre de nuestra base de datos, definido en la variable de entorno *$DATABASE_NAME* en el archivo *.env*.
+Una vez seguidos estos pasos se habrá levantado la aplicación en el puerto 8000 de nuestra máquina. Para acceder http://localhost:8000
+
+- Con un GET a http://localhost:8000/api/payables se mostrara el listado de boletas de pago no pagas
+- Con un GET a http://localhost:8000/api/transactions se mostrara el listado de transacciones acumuladas por día con su monto total y la cantidad
+- POST a http://localhost:8000/api/payables con los correspondientes parametros en formato json para crear una boleta de pago
+- POST a http://localhost:8000/api/transactions con los correspondientes parametros en formato json para crear una transacción de pago
 
 * #### Resumen de comandos *make* disponibles:
 

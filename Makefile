@@ -1,6 +1,6 @@
 include .env
 
-.PHONY: up build create_db down stop prune ps bash bash_db logs
+.PHONY: up build down stop prune ps bash bash_db logs
 
 default: up
 
