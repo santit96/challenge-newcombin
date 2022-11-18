@@ -21,7 +21,7 @@ El siguiente paso es ejecutar las migraciones, para eso se ejecuta `make bash` p
 Una vez dentro, ejecutamos `python manage.py migrate`.
 Se deberían ejecutar las migraciones sin problema.
 
-* ### Uso
+### Uso
 
 Una vez seguidos estos pasos se habrá levantado la aplicación en el puerto 8000 de nuestra máquina. Para acceder http://localhost:8000
 
