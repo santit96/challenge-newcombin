@@ -18,10 +18,10 @@ Podemos encontrar ejemplos de valores para nuestras variables en el archivo *.en
 Debido a que con Django no se nos permite crear la db, hay que hacerlo de manera manual. Para realizar esto, una vez que se hayan creado nuestros containers, podemos ejecutar el comando:
 `make create-db` (debemos asegurarnos que el container de MySQL haya terminado de iniciar, de lo contrario este comando fallará).
 
-O ingresando al container de MySql siguiendo los siguientes pasos:
+O ingresando al container de postgres siguiendo los siguientes pasos:
 
 - Con el comando  `make bash_db` accedemos a una terminal dentro del container.
-- Una vez dentro, ejecutamos `mysql -u root -p` y cuando nos pida la contraseña ingresamos lo definido en la variable de entorno *$MYSQL\_ROOT\_PASSWORD*.
+- Una vez dentro, ejecutamos `psql -u root -p` y cuando nos pida la contraseña ingresamos lo definido en la variable de entorno *$MYSQL\_ROOT\_PASSWORD*.
 - Dentro de la terminal de MySQL ejecutamos `CREATE DATABASE <database_name>`, donde `<database_name>` es el nombre de nuestra base de datos, definido en la variable de entorno *$DATABASE_NAME* en el archivo *.env*.
 
 * #### Resumen de comandos *make* disponibles:
