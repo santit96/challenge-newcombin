@@ -21,6 +21,12 @@ El siguiente paso es ejecutar las migraciones, para eso se ejecuta `make bash` p
 Una vez dentro, ejecutamos `python manage.py migrate`.
 Se deberían ejecutar las migraciones sin problema.
 
+* #### Tests
+
+Para correr los tests se debe ejecutar `make bash` para acceder a una terminal dentro del container.
+Una vez dentro, ejecutamos `python manage.py test`.
+Se deberían ejecutar los tests y deberían aparecer en consola los resultados
+
 ### Uso
 
 Una vez seguidos estos pasos se habrá levantado la aplicación en el puerto 8000 de nuestra máquina. Para acceder http://localhost:8000
