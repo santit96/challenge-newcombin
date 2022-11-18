@@ -8,3 +8,8 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     barcode = models.ForeignKey(Payable, on_delete=models.PROTECT, related_name='payments')
     payment_date = models.DateField()
+
+    def save(self, *args, **kwargs):
+        self.barcode.status = 'paid'
+        self.barcode.save()
+        super().save(*args, **kwargs)
